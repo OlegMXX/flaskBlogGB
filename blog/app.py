@@ -1,6 +1,8 @@
 from flask import Flask, render_template
+from blog.models.database import db
 from blog.views.users import users_app
 from blog.views.articles import articles_app
+from blog.views.auth import login_manager, auth_app
 
 app = Flask(__name__)
 
@@ -10,6 +12,16 @@ def index():
     return render_template("index.html")
 
 
+# Blueprints
 app.register_blueprint(users_app, url_prefix="/users")
-
 app.register_blueprint(articles_app, url_prefix="/articles")
+
+# Database
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////home/olly/Рабочий стол/flaskBasics/flaskProjectGB/blog.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db.init_app(app)
+
+# Auth app
+app.config["SECRET_KEY"] = "1%uwf1khz)wwf0(cve_@&ms7y!2g#reilnuy+*a_q1%!^g(z^f"
+app.register_blueprint(auth_app, url_prefix="/auth")
+login_manager.init_app(app)
