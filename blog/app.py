@@ -1,8 +1,10 @@
+import os
 from flask import Flask, render_template
 from blog.models.database import db
 from blog.views.users import users_app
 from blog.views.articles import articles_app
 from blog.views.auth import login_manager, auth_app
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 
@@ -25,3 +27,11 @@ db.init_app(app)
 app.config["SECRET_KEY"] = "1%uwf1khz)wwf0(cve_@&ms7y!2g#reilnuy+*a_q1%!^g(z^f"
 app.register_blueprint(auth_app, url_prefix="/auth")
 login_manager.init_app(app)
+
+# Configurations
+cfg_name = os.environ.get("CONFIG_NAME") or "DevConfig"
+app.config.from_object(f"blog.configs.{cfg_name}")
+
+# Migrations
+migrate = Migrate(app, db, compare_type=True)
+
