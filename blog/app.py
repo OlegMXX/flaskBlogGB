@@ -4,8 +4,10 @@ from blog.models.database import db
 from blog.views.users import users_app
 from blog.views.articles import articles_app
 from blog.views.auth import login_manager, auth_app
+from blog.views.authors import authors_app
 from flask_migrate import Migrate
 from blog.security import flask_bcrypt
+
 
 app = Flask(__name__)
 
@@ -18,6 +20,7 @@ def index():
 # Blueprints
 app.register_blueprint(users_app, url_prefix="/users")
 app.register_blueprint(articles_app, url_prefix="/articles")
+app.register_blueprint(authors_app, url_prefix="/authors")
 
 # Database
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////home/olly/Рабочий стол/flaskBasics/flaskProjectGB/blog.db"
