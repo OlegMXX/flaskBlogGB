@@ -7,7 +7,7 @@ from blog.views.auth import login_manager, auth_app
 from blog.views.authors import authors_app
 from flask_migrate import Migrate
 from blog.security import flask_bcrypt
-
+from blog.admin import admin
 
 app = Flask(__name__)
 
@@ -41,3 +41,6 @@ migrate = Migrate(app, db, compare_type=True)
 
 # Security
 flask_bcrypt.init_app(app)
+
+# Flask-Admin
+admin.init_app(app)
