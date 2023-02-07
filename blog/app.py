@@ -8,6 +8,7 @@ from blog.views.authors import authors_app
 from flask_migrate import Migrate
 from blog.security import flask_bcrypt
 from blog.admin import admin
+from blog.api import init_api
 
 app = Flask(__name__)
 
@@ -44,3 +45,6 @@ flask_bcrypt.init_app(app)
 
 # Flask-Admin
 admin.init_app(app)
+
+# API
+api = init_api(app)
