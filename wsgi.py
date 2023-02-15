@@ -5,6 +5,9 @@ from blog.models.database import db
 from blog.models import User
 
 if __name__ == '__main__':
+    init_db()
+    crate_admin()
+    crate_tags()
     app.run(
         host='0.0.0.0',
         debug=True,
