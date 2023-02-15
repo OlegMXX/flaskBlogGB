@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
 #commands
 
-@app.cli.command("init-db")
+#@app.cli.command("init-db")
 def init_db():
    """
    Run in your terminal:
@@ -26,7 +26,7 @@ def init_db():
    print("done!")
 
 
-@app.cli.command("create-admin")
+#@app.cli.command("create-admin")
 def create_admin():
 
     """
@@ -45,7 +45,7 @@ def create_admin():
     print("created admin:", admin)
 
 
-@app.cli.command("create-tags")
+#@app.cli.command("create-tags")
 def create_tags():
     """
     Run in your terminal:
